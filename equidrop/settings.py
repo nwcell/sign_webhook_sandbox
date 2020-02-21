@@ -26,7 +26,7 @@ SECRET_KEY = 'g8%=opiy2d#!0(&q-!ed(1nfzv&!16)(ti*+h+94of#*9f8$a6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['equidrop.krause.im']
 
 
 # Application definition

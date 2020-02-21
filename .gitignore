@@ -124,4 +124,5 @@ dmypy.json
 /static
 /uploads
 .env
+.venv
 
