@@ -10,7 +10,7 @@ pylint = "==2.4.4"
 django = "==3.0.3"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
 
 [scripts]
 manage = "python manage.py"
