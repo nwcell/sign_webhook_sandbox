@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+admin.site.site_header = "Equidrop"
+admin.site.site_title = "Equidrop by Adobe"
+admin.site.index_title = "Equidrop"
+
 urlpatterns = [
     path('', admin.site.urls),
 ]
