@@ -20,7 +20,7 @@ def listener(request):
         "applicationDisplayName": "Toolbox"
     }
     """
-    client_id = request.headers.get("HTTP_X_ADOBESIGN_CLIENTID")
+    client_id = request.headers.get("X-ADOBESIGN-CLIENTID")
     data = request.body.decode("utf-8")
     log = ListenerLog.objects.create(data=data)
     response = JsonResponse({"xAdobeSignClientId": client_id})
