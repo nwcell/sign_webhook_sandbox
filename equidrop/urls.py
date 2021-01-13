@@ -22,6 +22,7 @@ admin.site.site_title = "Sign Toolbox by Adobe"
 admin.site.index_title = "Sign Toolbox"
 
 urlpatterns = [
-    path('', admin.site.urls),
-    path('listener', include('listener.urls'))
+    path("", admin.site.urls),
+    path("doc/", include("django.contrib.admindocs.urls")),
+    path("api/listener/", include("listener.urls")),
 ]

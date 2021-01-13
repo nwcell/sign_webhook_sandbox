@@ -1,0 +1,4 @@
+{
+    "python.formatting.provider": "black",
+    "python.pythonPath": "/Users/tkrause/Projects/sign_webhook_sandbox/.venv/bin/python3.9",
+}

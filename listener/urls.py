@@ -1,7 +1,8 @@
+"""Urls for the Listener app."""
 from django.urls import include, path
 
 from . import views
 
 urlpatterns = [
-    path('', views.listener),
+    path("<uuid:listener_id>", views.listener),
 ]

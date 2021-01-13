@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
-import os
+
+# pylint: disable=import-outside-toplevel
 import sys
+import environ
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'equidrop.settings')
+    """Manage django services."""
+    environ.Env(DJANGO_SETTINGS_MODULE=(str, "equidrop.settings"))
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -17,5 +21,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
