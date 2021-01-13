@@ -13,7 +13,7 @@ env = Env(
     MEDIA_PATH=(str, "./media"),
 )
 
-PROJECT = "equidrop"
+PROJECT = "sign_webhook_sandbox"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/

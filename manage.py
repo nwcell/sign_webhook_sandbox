@@ -8,7 +8,7 @@ import environ
 
 def main():
     """Manage django services."""
-    environ.Env(DJANGO_SETTINGS_MODULE=(str, "equidrop.settings"))
+    environ.Env(DJANGO_SETTINGS_MODULE=(str, "sign_webhook_sandbox.settings"))
 
     try:
         from django.core.management import execute_from_command_line
