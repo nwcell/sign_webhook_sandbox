@@ -9,9 +9,9 @@ from environ import Path, Env
 env = Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ["127.0.0.1"]),
-    STATIC_URL=(str, "/static"),
+    STATIC_URL=(str, "/static/"),
     STATIC_PATH=(str, "public"),
-    MEDIA_URL=(str, "/media"),
+    MEDIA_URL=(str, "/media/"),
     MEDIA_PATH=(str, "media"),
 )
 
@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.admindocs",
-    # "uploader",
     "listener",
 ]
 
