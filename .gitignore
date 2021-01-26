@@ -126,4 +126,5 @@ dmypy.json
 /uploads
 .env
 .venv
+sent_emails/
 

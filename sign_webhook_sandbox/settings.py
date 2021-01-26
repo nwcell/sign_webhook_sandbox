@@ -106,3 +106,7 @@ STATIC_URL = env("STATIC_URL")
 STATIC_ROOT = Path(env("STATIC_PATH"))
 MEDIA_URL = env("MEDIA_URL")
 MEDIA_ROOT = Path(env("MEDIA_PATH"))
+
+
+EMAIL_CONFIG = env.email_url("EMAIL_URL", default="consolemail://")
+vars().update(EMAIL_CONFIG)
