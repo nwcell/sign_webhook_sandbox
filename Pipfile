@@ -17,6 +17,8 @@ docutils = "*"
 pygments = "*"
 waitress = "*"
 psycopg2-binary = "*"
+install = "*"
+django-username-email = "*"
 
 [requires]
 python_version = "3.9"

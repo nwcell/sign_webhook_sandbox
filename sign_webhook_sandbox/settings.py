@@ -24,6 +24,7 @@ PROJECT = "sign_webhook_sandbox"
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", list)
+AUTH_USER_MODEL = "cuser.CUser"
 
 
 # Application definition
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cuser",
     "listener",
 ]
 

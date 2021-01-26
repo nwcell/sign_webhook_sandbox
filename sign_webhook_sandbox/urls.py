@@ -30,7 +30,5 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("", admin.site.urls),
-    # path("admin_password_reset")
     path("api/listener/", include("listener.urls")),
-    # path("accounts/", include("django.contrib.auth.urls")),
 ]

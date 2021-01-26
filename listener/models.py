@@ -32,10 +32,10 @@ class Listener(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.username} - {self.url}"
+        return f"{self.user} - {self.url}"
 
     class Meta:
-        ordering = ["user__username"]
+        ordering = ["user"]
         permissions = (("view_all_listeners", "Can view all webhook listeners"),)
 
     @property
