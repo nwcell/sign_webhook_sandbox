@@ -9,8 +9,10 @@ from environ import Path, Env
 env = Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ["127.0.0.1"]),
-    STATIC_PATH=(str, "./static"),
-    MEDIA_PATH=(str, "./media"),
+    STATIC_URL=(str, "/static"),
+    STATIC_PATH=(str, "public"),
+    MEDIA_URL=(str, "/media"),
+    MEDIA_PATH=(str, "media"),
 )
 
 PROJECT = "sign_webhook_sandbox"
@@ -102,7 +104,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = "/static/"
+STATIC_URL = Path(env("STATIC_URL"))
 STATIC_ROOT = Path(env("STATIC_PATH"))
-MEDIA_URL = "/media/"
+MEDIA_URL = Path(env("MEDIA_URL"))
 MEDIA_ROOT = Path(env("MEDIA_PATH"))
