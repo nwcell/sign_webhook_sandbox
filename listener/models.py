@@ -9,6 +9,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.safestring import mark_safe
+from django.urls import reverse
 
 from pygments import highlight
 from pygments.lexers.data import JsonLexer
@@ -31,11 +32,16 @@ class Listener(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.username} - {self.id}"
+        return f"{self.user.username} - {self.url}"
 
     class Meta:
         ordering = ["user__username"]
         permissions = (("view_all_listeners", "Can view all webhook listeners"),)
+
+    @property
+    def url(self):
+        """Target url for new webhooks."""
+        return reverse("listener", args=(self.pk,))
 
 
 class ListenerLog(models.Model):
@@ -52,30 +58,14 @@ class ListenerLog(models.Model):
 
     def __str__(self):
         timestamp = self.created_at.strftime("%m/%d/%y %H:%M:%S")
-        if self.webhook_name and self.webhook_id:
-            return f"{self.listener.user.username} | {timestamp} | {self.webhook_name}"
-        return f"{self.listener.user.username} | {timestamp} | <Non Conforming>"
-
-    @property
-    def payload(self):
-        try:
-            return json.loads(self.data)
-        except (json.JSONDecodeError, TypeError):
-            return {}
-
-    @property
-    def webhook_id(self):
-        return self.payload.get("webhookId")
+        if self.webhook_name:
+            return f"{self.listener.user} | {timestamp} | {self.webhook_name}"
+        return f"{self.listener.user} | {timestamp} | <Non Conforming>"
 
     @property
     def webhook_name(self):
-        print(self.data, type(self.data))
-        print(self.payload, type(self.payload))
-        return self.payload.get("webhookName")
-
-    @property
-    def username(self):
-        return self.listener.user.username
+        """Name assigned to the webhook."""
+        return self.data.get("webhookName")
 
     @property
     def data_prettified(self):

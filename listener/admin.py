@@ -1,3 +1,4 @@
+"""Admin for webhook listener app."""
 from django.contrib import admin
 
 from .models import Listener, ListenerLog
@@ -36,26 +37,14 @@ class ReadOnlyModelAdmin(admin.ModelAdmin):
 class ListenerAdmin(ReadOnlyModelAdmin):
     """View valid listeners"""
 
-    fields = ("id", "user")
-    description = "This is a set of fields group into a fieldset."
-
-    # fieldsets = (
-    #     (
-    #         None,
-    #         {
-    #             "fields": ("id", "user"),
-    #             "description": "This is a set of fields group into a fieldset.",
-    #         },
-    #     ),
-    # )
+    fields = ("url", "id", "user")
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        if request.user.is_superuser or request.user.has_perm(
-            "listener.view_all_listeners"
-        ):
+        user = request.user
+        if user.is_superuser or user.has_perm("listener.view_all_listeners"):
             return qs
-        return qs.filter(user=request.user)
+        return qs.filter(user=user)
 
 
 @admin.register(ListenerLog)
