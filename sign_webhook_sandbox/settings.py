@@ -104,7 +104,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = Path(env("STATIC_URL"))
+STATIC_URL = env("STATIC_URL")
 STATIC_ROOT = Path(env("STATIC_PATH"))
-MEDIA_URL = Path(env("MEDIA_URL"))
+MEDIA_URL = env("MEDIA_URL")
 MEDIA_ROOT = Path(env("MEDIA_PATH"))
