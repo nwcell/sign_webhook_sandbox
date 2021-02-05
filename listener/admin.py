@@ -51,7 +51,7 @@ class ListenerAdmin(ReadOnlyModelAdmin):
 class ListenerLogAdmin(ReadOnlyModelAdmin):
     """View logs for a user's listener."""
 
-    fields = ("id", "created_at", "data_prettified")
+    fields = ("id", "created_at", "headers_prettified", "data_prettified")
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

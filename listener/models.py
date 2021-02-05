@@ -49,6 +49,7 @@ class ListenerLog(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     listener = models.ForeignKey(Listener, on_delete=models.CASCADE)
+    headers = models.JSONField()
     data = models.JSONField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -67,14 +68,23 @@ class ListenerLog(models.Model):
         """Name assigned to the webhook."""
         return self.data.get("webhookName")
 
-    @property
-    def data_prettified(self):
+    def json_prettify(self, data):
         """Function to display pretty version of our data"""
-        response = json.dumps(self.data, sort_keys=True, indent=2)
+        response = json.dumps(data, sort_keys=True, indent=2)
         formatter = HtmlFormatter(style="colorful")
         response = highlight(response, JsonLexer(), formatter)
         style = f"<style>{formatter.get_style_defs()}</style><br>"
         return mark_safe(style + response)
+
+    @property
+    def data_prettified(self):
+        """Function to display pretty version of our data"""
+        return self.json_prettify(self.data)
+
+    @property
+    def headers_prettified(self):
+        """Function to display pretty version of our data"""
+        return self.json_prettify(self.headers)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

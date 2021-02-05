@@ -37,12 +37,15 @@ def listener(request, listener_id):
     except json.JSONDecodeError:
         data = {}
 
+    headers = {key: request.headers[key] for key in request.headers.keys()}
+
     target = Listener.objects.get(pk=listener_id)
-    log = ListenerLog.objects.create(listener=target, data=data)
+    log = ListenerLog.objects.create(listener=target, data=data, headers=headers)
     response = JsonResponse(
         {
             "xAdobeSignClientId": client_id,
             "data": data,
+            "headers": headers,
             "log": log.__str__(),
         }
     )
